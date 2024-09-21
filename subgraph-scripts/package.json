@@ -1,0 +1,8 @@
+{
+   "type": "module",
+   "dependencies": {
+      "@apollo/client": "^3.11.1",
+      "axios": "^1.7.2",
+      "urql": "^4.1.0"
+   }
+}

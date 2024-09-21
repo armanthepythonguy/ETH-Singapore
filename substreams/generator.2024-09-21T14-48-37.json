@@ -1,0 +1,20 @@
+{
+  "generator": "evm-events-calls",
+  "state": {
+    "name": "zkmlvaultx",
+    "chainName": "sepolia",
+    "contracts": [
+      {
+        "trackEvents": false,
+        "trackCalls": false,
+        "Abi": null,
+        "address": "",
+        "initialBlock": null,
+        "trackFactory": null,
+        "factoryCreationEvent": "",
+        "factoryCreationEventFieldIdx": null
+      }
+    ],
+    "dynamic_contracts": null
+  }
+}
