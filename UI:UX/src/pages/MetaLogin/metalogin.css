@@ -1,0 +1,170 @@
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+  }
+  .logo-wrapper{
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+    padding:2%;
+  }
+  .logo-bg{
+    background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-radius: 50%;
+    padding:1%;
+  }
+  video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    position: relative;
+    padding: 6px;
+  }
+ 
+  .form-set {
+    display: flex;
+    width: 100%;
+    gap: 1em;
+  }
+  .form-input {
+    width: 100%;
+    border: none;
+    color: rgb(209, 204, 204);
+    border-bottom: 1px solid grey;
+    background-color: transparent;
+   font-family:'raleway';
+  }
+  .form-input:focus {
+    outline: none;
+    font-family:'raleway';
+  }
+  .form-input::placeholder {
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-family:'raleway';
+  }
+  .button-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    align-items: center;
+  }
+  .form-button {
+    display: flex;
+    gap: 6px;
+    color: white;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    height: 50px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family:'raleway';
+  }
+  input[type="file"] {
+    width: 100%;
+    border: none;
+    color: rgb(209, 204, 204);
+    border-bottom: 1px solid grey;
+    background-color: transparent;
+  }
+  input[type="file"]::file-selector-button {
+    background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 25px;
+    height: 40px;
+    font-size: 14px;
+    width: 30%;
+  }
+  input[type="file"]::file-selector-button:hover {
+    background: white;
+    color: black;
+  }
+  input[type="file"]::placeholder {
+    color: rgb(209, 204, 204);
+    font-style: normal;
+    font-family: 'raleway';
+    font-size: 14px;
+  }
+  .form-button:hover {
+    background-color: white;
+    color: black;
+    font-family: 'raleway';
+  }
+  .form-heading {
+    height: 80px;
+    width: 100%;
+  }
+  .card {
+    height: 350px;
+    width: 430px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3em;
+    background-color: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 8px;
+    -webkit-box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.2);
+    box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.2);
+    font-family: "Poppins", sans-serif;
+  }
+  .input-wrapper {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+  }
+  .custom-google-button {
+    background-color: #4285f4; /* Google Blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  .dialogue{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-button{
+    background-color: white;
+    color:black;
+    font-family: 'raleway';
+  }
