@@ -1,0 +1,10 @@
+# ZKML VaultX
+zkML Vault is a decentralized platform that merges the power of machine learning and Zero Knowledge to revolutionize crypto trading. Developers can upload their AI-driven models, trained to predict the returns of various cryptocurrencies like Ethereum, Bitcoin, and others. These models are verified using zero-knowledge proofs (zkML), ensuring that investors can trust the accuracy of predictions without exposing sensitive data. Investors can explore different models, selecting the one that best aligns with their strategy. Once a model is chosen, the investor can confirm the trade amount, and the platform’s smart contracts automatically execute the trade based on the model's predictions. The use of zkML ensures privacy, security, and transparency throughout the process, while smart contracts ensure automated, trustless trade execution. By bridging AI-driven forecasting and decentralized finance, zkML Vault creates a marketplace for predictive models, empowering both developers and investors in the volatile world of cryptocurrency.
+![ZKMLVaultX](https://github.com/user-attachments/assets/970c15bf-0959-49bd-9fda-b4597e90eb8f)
+
+## Project Description
+ZKML VaultX uses VeriSync's transpiler at its core. The transpiler converts the ML models into ZKML circuits in the Plonky2 proving system. These proofs are the verified on-chain during trades. We also use a benchmarking model that takes in public data available on Subgraphs to check the performance of the model. We have used subgraphs to pull data from public Messari subgraphs like Aave V2, V3, and Compound V2, V3. Also, to consider chainlink token prices we have used substreams for price data streaming later used by the ML models. We are using a static backend to make the UI/UX more streamlined and live. Uniswap V4 hooks including ZK Hook were implemented and test cases were written to consider verification of the ZKML proof before swapping. USDC is the base currency of the platform and users can only use USDC to invest in ML models.
+
+## Contract Address
+1. Sepolia :- 0xD4BB924ecB94799ea497900E91Dc0dd316061EB3
+2. Morph :- 0x2A67Cf654F8EE1660639938BE9f3e30522A443b6
