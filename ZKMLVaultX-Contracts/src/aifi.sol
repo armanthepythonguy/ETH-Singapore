@@ -6,7 +6,8 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
 import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
 import {BaseUltraVerifier, UltraVerifier} from "./verifier.sol";
-
+import "@pythnetwork/pyth-sdk-solidity/IPyth.sol";
+import "@pythnetwork/pyth-sdk-solidity/PythStructs.sol";
 
 contract Aifi is Ownable{
 
@@ -38,6 +39,7 @@ contract Aifi is Ownable{
     IERC20 public immutable usdcToken;
     ISwapRouter public immutable swapRouter;
     UltraVerifier proofVerifier;
+    IPyth pyth;
 
     modifier onlyDeployer(uint model) {
         require(models[model].deployer == msg.sender, "Only deployer can submit proofs");
@@ -49,10 +51,11 @@ contract Aifi is Ownable{
         _;
     }
 
-    constructor(address usdc, address router)Ownable(msg.sender){
+    constructor(address usdc, address router, address pythAddress)Ownable(){
         usdcToken = IERC20(usdc);
         swapRouter = ISwapRouter(router);
         proofVerifier = new UltraVerifier();
+        pyth = IPyth(pythAddress);
     }
 
     function addModel(address token) external{
@@ -96,6 +99,7 @@ contract Aifi is Ownable{
         //If proof if verified
         require(proofVerifier.verify(proof, pubInputs), "Invalid proof");
         if(models[model].onTrade){
+            IERC20(models[model].token).approve(address(swapRouter), IERC20(models[model].token).balanceOf(address(this)));
             ISwapRouter.ExactInputSingleParams memory params = 
                 ISwapRouter.ExactInputSingleParams({
                 tokenIn: models[model].token,
@@ -110,6 +114,7 @@ contract Aifi is Ownable{
             uint256 amountOut = swapRouter.exactInputSingle(params);
             models[model].cumulativeDeposit = uint256(int256(models[model].cumulativeDeposit) + int256(amountOut)-int256(models[model].tradedBalance));
         }else{
+            IERC20(address(usdcToken)).approve(address(swapRouter), models[model].cumulativeDeposit);
             ISwapRouter.ExactInputSingleParams memory params = 
                 ISwapRouter.ExactInputSingleParams({
                 tokenIn: address(usdcToken),
@@ -127,6 +132,20 @@ contract Aifi is Ownable{
     }
 
     
+    function verify(bytes32[] memory pubInputs, bytes memory proof) external view{
+        require(proofVerifier.verify(proof, pubInputs), "Invalid proof");
+    }
 
+    function getPrice(address token) internal returns(PythStructs.Price memory){
+        if(token == address(0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14)){
+            bytes32 priceFeedId = 0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace; // ETH/USD
+            PythStructs.Price memory price = pyth.getPriceNoOlderThan(priceFeedId, 60);
+            return price;
+        }else if(token == address(0xFF34B3d4Aee8ddCd6F9AFFFB6Fe49bD371b8a357)){
+            bytes32 priceFeedId = 0xb0948a5e5313200c632b51bb5ca32f6de0d36e9950a942d19751e833f70dabfd; // ETH/USD
+            PythStructs.Price memory price = pyth.getPriceNoOlderThan(priceFeedId, 60);
+            return price;
+        }
+    }
 
 }
