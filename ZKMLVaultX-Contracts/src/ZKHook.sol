@@ -46,7 +46,7 @@ contract ZKMLHook is BaseHook{
         for (uint256 i = 0; i < pubInputs.length; i++) {
             dynamicArray[i] = pubInputs[i];
         }
-        // require(verifier.verify(proof, dynamicArray), "Invalid proof");
+        require(verifier.verify(proof, dynamicArray), "Invalid proof");
         return (BaseHook.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, 0);
     }
     
